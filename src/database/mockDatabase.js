@@ -16,6 +16,15 @@ class MockDatabase {
       '1234'
     );
     this.users.push(admin);
+    
+    const user = new User(
+      this.nextId++,
+      'Usuário Regular',
+      'user@spsgroup.com.br',
+      'user',
+      '1234'
+    );
+    this.users.push(user);
   }
 
   findUserByEmail(email) {
