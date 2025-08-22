@@ -1,5 +1,6 @@
 const multer = require('multer');
 const path = require('path');
+const fs = require('fs');
 
 /**
  * Configuração de armazenamento seguro para uploads
@@ -9,6 +10,12 @@ const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     // Caminho fixo e seguro para uploads com proteção path traversal
     const baseUploadPath = path.resolve('uploads/avatars/');
+    
+    // Criar diretório se não existir
+    if (!fs.existsSync(baseUploadPath)) {
+      fs.mkdirSync(baseUploadPath, { recursive: true });
+    }
+    
     cb(null, baseUploadPath);
   },
   filename: (req, file, cb) => {
