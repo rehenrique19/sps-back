@@ -4,14 +4,45 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": " nodemon --inspect=7000 src/index.js"
+    "start": "node start-server.js",
+    "dev": "nodemon --inspect=7000 src/index.js",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
-    "express": "^4.19.1"
+    "express": "^4.20.0",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^2.0.2",
+    "redis": "^4.6.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0",
+    "winston": "^3.11.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.0"
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.0",
+    "supertest": "^6.3.3"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "setupFilesAfterEnv": [
+      "<rootDir>/tests/setup.js"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/index.js"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 80,
+        "functions": 80,
+        "lines": 80,
+        "statements": 80
+      }
+    }
   }
 }
